@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>後七子｜互動教學 — 李攀龍・王世貞與明代文學復古運動</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-tc@5.1.0/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-tc@5.1.0/700.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/noto-serif-tc@5.1.0/900.css">
+<style>
+:root{
+  --paper:#f6f1e4;
+  --paper2:#efe6d3;
+  --ink:#2a2622;
+  --ink-soft:#5a5248;
+  --vermilion:#a8342a;
+  --vermilion-dark:#7e241c;
+  --gold:#a5772a;
+  --indigo:#2e4a5b;
+  --jade:#3d6b5e;
+  --line:#c9b995;
+  --card:#fbf7ee;
+  --shadow:0 8px 24px rgba(60,45,25,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Noto Serif TC',serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.9;
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(168,52,42,.03) 0, transparent 40%),
+    radial-gradient(circle at 85% 70%, rgba(165,119,42,.04) 0, transparent 45%);
+}
+::selection{background:var(--vermilion);color:#fff;}
+
+/* ===== 進度條 ===== */
+#progressBar{position:fixed;top:0;left:0;height:4px;background:linear-gradient(90deg,var(--vermilion),var(--gold));width:0;z-index:1000;transition:width .1s linear;}
+
+/* ===== 頁首 ===== */
+header{
+  position:relative;
+  padding:90px 20px 70px;
+  text-align:center;
+  background:linear-gradient(180deg,#26221d 0%,#3a322a 60%,#4a3f33 100%);
+  color:#efe6d3;
+  overflow:hidden;
+}
+header::before,header::after{
+  content:"";position:absolute;border-radius:50%;filter:blur(2px);opacity:.12;
+}
+header::before{width:420px;height:420px;border:1px solid #e8d9b0;top:-180px;left:-120px;}
+header::after{width:320px;height:320px;border:1px solid #e8d9b0;bottom:-140px;right:-90px;}
+.hero-inner{position:relative;z-index:2;max-width:900px;margin:0 auto;}
+.hero-seal{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:64px;height:64px;background:var(--vermilion);color:#fff;
+  font-weight:900;font-size:22px;line-height:1.15;
+  border-radius:8px;margin-bottom:22px;
+  box-shadow:0 4px 14px rgba(0,0,0,.4), inset 0 0 0 3px rgba(255,255,255,.25);
+  transform:rotate(-3deg);
+}
+header h1{
+  font-size:clamp(44px,8vw,76px);font-weight:900;letter-spacing:.12em;
+  background:linear-gradient(180deg,#f5e8c8,#d9b96a);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:10px;
+}
+.hero-sub{font-size:clamp(16px,2.6vw,22px);letter-spacing:.3em;color:#d8c9a3;margin-bottom:26px;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+.hero-tags span{
+  border:1px solid rgba(232,217,176,.4);padding:5px 16px;border-radius:999px;
+  font-size:13.5px;color:#e5d8b8;background:rgba(255,255,255,.04);letter-spacing:.08em;
+}
+.hero-quote{
+  margin-top:34px;font-size:clamp(14px,2vw,17px);color:#cbbd9c;letter-spacing:.15em;
+}
+.hero-quote b{color:#e9d8a8;}
+
+/* ===== 導覽列 ===== */
+nav{
+  position:sticky;top:0;z-index:900;
+  background:rgba(246,241,228,.94);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 2px 12px rgba(60,45,25,.08);
+}
+.nav-inner{max-width:1080px;margin:0 auto;display:flex;overflow-x:auto;scrollbar-width:none;}
+.nav-inner::-webkit-scrollbar{display:none;}
+.nav-inner a{
+  flex:0 0 auto;padding:15px 20px;text-decoration:none;color:var(--ink-soft);
+  font-size:15px;letter-spacing:.12em;font-weight:700;position:relative;white-space:nowrap;
+  transition:color .25s;
+}
+.nav-inner a::after{
+  content:"";position:absolute;left:20px;right:20px;bottom:10px;height:3px;
+  background:var(--vermilion);transform:scaleX(0);transform-origin:left;transition:transform .3s;
+  border-radius:2px;
+}
+.nav-inner a:hover{color:var(--vermilion);}
+.nav-inner a.active{color:var(--vermilion);}
+.nav-inner a.active::after{transform:scaleX(1);}
+
+/* ===== 區塊通用 ===== */
+main{max-width:1080px;margin:0 auto;padding:0 20px 60px;}
+section{padding:64px 0 10px;}
+.sec-head{display:flex;align-items:center;gap:16px;margin-bottom:30px;}
+.sec-num{
+  font-weight:900;font-size:15px;color:#fff;background:var(--vermilion);
+  width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+  border-radius:8px;flex:0 0 auto;box-shadow:0 3px 8px rgba(168,52,42,.3);
+}
+.sec-head h2{font-size:clamp(26px,4vw,34px);font-weight:900;letter-spacing:.1em;}
+.sec-head .sec-line{flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent);}
+.sec-desc{color:var(--ink-soft);margin:-14px 0 28px;font-size:15px;letter-spacing:.05em;}
+
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;
+  box-shadow:var(--shadow);padding:28px;position:relative;
+}
+.card + .card{margin-top:22px;}
+.card h3{
+  font-size:19px;font-weight:900;letter-spacing:.08em;color:var(--vermilion-dark);
+  margin-bottom:14px;display:flex;align-items:center;gap:10px;
+}
+.card h3::before{content:"◆";font-size:11px;color:var(--gold);}
+.card p{font-size:15.5px;margin-bottom:10px;}
+.card p:last-child{margin-bottom:0;}
+.hl{color:var(--vermilion);font-weight:700;}
+.hl-gold{color:var(--gold);font-weight:700;}
+
+blockquote{
+  border-left:4px solid var(--gold);background:rgba(165,119,42,.07);
+  padding:14px 18px;border-radius:0 8px 8px 0;margin:14px 0;
+  font-size:15px;color:#4c4235;
+}
+blockquote .src{display:block;margin-top:8px;font-size:13px;color:var(--ink-soft);}
+
+.tag{
+  display:inline-block;font-size:12.5px;padding:2px 12px;border-radius:999px;
+  border:1px solid var(--line);color:var(--ink-soft);margin:0 6px 6px 0;background:#fff9;
+  letter-spacing:.05em;
+}
+.tag.red{border-color:var(--vermilion);color:var(--vermilion);background:rgba(168,52,42,.06);}
+.tag.blue{border-color:var(--indigo);color:var(--indigo);background:rgba(46,74,91,.06);}
+
+/* ===== 重點卡 ===== */
+.key-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;}
+.key-card{
+  background:var(--card);border:1px solid var(--line);border-top:4px solid var(--vermilion);
+  border-radius:12px;padding:22px;box-shadow:var(--shadow);
+  transition:transform .3s,box-shadow .3s;
+}
+.key-card:nth-child(2){border-top-color:var(--gold);}
+.key-card:nth-child(3){border-top-color:var(--jade);}
+.key-card:hover{transform:translateY(-5px);box-shadow:0 14px 30px rgba(60,45,25,.18);}
+.key-card .knum{font-weight:900;color:var(--gold);font-size:15px;letter-spacing:.2em;}
+.key-card h4{font-size:18px;font-weight:900;margin:6px 0 10px;}
+.key-card p{font-size:14.5px;color:var(--ink-soft);}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px;}
+@media(max-width:720px){.compare{grid-template-columns:1fr;}}
+.compare .card{margin-top:0;}
+.compare h4{font-size:18px;font-weight:900;margin-bottom:10px;}
+.compare ul{list-style:none;}
+.compare li{font-size:14.5px;padding:7px 0;border-bottom:1px dashed var(--line);display:flex;gap:8px;}
+.compare li:last-child{border-bottom:none;}
+.compare li::before{content:"·";color:var(--vermilion);font-weight:900;}
+
+/* ===== 成員卡 ===== */
+.member-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;}
+.member{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:24px 18px;text-align:center;cursor:pointer;box-shadow:var(--shadow);
+  transition:transform .3s,box-shadow .3s,border-color .3s;position:relative;overflow:hidden;
+}
+.member:hover{transform:translateY(-6px);box-shadow:0 16px 32px rgba(60,45,25,.18);}
+.member.leader{border:2px solid var(--vermilion);}
+.member.leader::before{
+  content:"領袖";position:absolute;top:12px;right:-26px;background:var(--vermilion);color:#fff;
+  font-size:11px;padding:2px 30px;transform:rotate(45deg);letter-spacing:.2em;
+}
+.member .avatar{
+  width:72px;height:72px;border-radius:50%;margin:0 auto 12px;
+  background:linear-gradient(135deg,#e9dcc0,#d6c193);
+  display:flex;align-items:center;justify-content:center;
+  font-size:28px;font-weight:900;color:#6b4e21;
+  border:2px solid var(--gold);
+}
+.member.leader .avatar{background:linear-gradient(135deg,#e6b8a8,#c96b52);color:#fff;border-color:var(--vermilion);}
+.member h4{font-size:20px;font-weight:900;letter-spacing:.1em;}
+.member .mzi{font-size:12.5px;color:var(--ink-soft);margin:4px 0 10px;}
+.member .mrole{font-size:12px;padding:3px 12px;border-radius:999px;display:inline-block;margin-bottom:10px;}
+.member.leader .mrole{background:rgba(168,52,42,.1);color:var(--vermilion);}
+.member .mrole.normal{background:rgba(46,74,91,.08);color:var(--indigo);}
+.member .mbrief{font-size:13px;color:var(--ink-soft);line-height:1.7;}
+.member .more-hint{font-size:12px;color:var(--gold);margin-top:10px;letter-spacing:.15em;}
+
+/* ===== 燈箱 ===== */
+.modal-bg{
+  position:fixed;inset:0;background:rgba(30,24,18,.65);backdrop-filter:blur(4px);
+  display:none;align-items:center;justify-content:center;z-index:2000;padding:20px;
+}
+.modal-bg.open{display:flex;animation:fadeIn .3s;}
+.modal{
+  background:var(--paper);border-radius:14px;max-width:560px;width:100%;max-height:82vh;
+  overflow-y:auto;padding:34px;position:relative;border-top:6px solid var(--vermilion);
+  box-shadow:0 30px 60px rgba(0,0,0,.35);animation:popIn .35s;
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes popIn{from{opacity:0;transform:scale(.92) translateY(14px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal .close-btn{
+  position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;
+  border:1px solid var(--line);background:#fff;cursor:pointer;font-size:16px;color:var(--ink-soft);
+  transition:all .2s;
+}
+.modal .close-btn:hover{background:var(--vermilion);color:#fff;border-color:var(--vermilion);}
+.modal h3{font-size:26px;font-weight:900;margin-bottom:4px;}
+.modal .mzi{color:var(--ink-soft);font-size:14px;margin-bottom:14px;}
+.modal .mbody p{font-size:14.5px;margin-bottom:10px;}
+.modal .mbody h5{font-size:14px;color:var(--vermilion);margin:16px 0 6px;letter-spacing:.1em;}
+
+/* ===== 人物區（李、王） ===== */
+.figure-grid{display:grid;grid-template-columns:300px 1fr;gap:22px;align-items:start;}
+@media(max-width:860px){.figure-grid{grid-template-columns:1fr;}}
+.figure-card{
+  background:linear-gradient(160deg,#3a322a,#57452f);color:#f0e6cf;border-radius:14px;
+  padding:34px 26px;text-align:center;box-shadow:var(--shadow);position:sticky;top:80px;
+}
+@media(max-width:860px){.figure-card{position:static;}}
+.figure-card .big-char{
+  font-size:64px;font-weight:900;line-height:1;letter-spacing:.05em;
+  background:linear-gradient(180deg,#f5e8c8,#d9b96a);-webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.figure-card .zi{margin-top:8px;font-size:14px;color:#d8c9a3;letter-spacing:.12em;}
+.figure-card .years{margin-top:4px;font-size:13px;color:#b7a67f;}
+.figure-card .divider{width:46px;height:2px;background:var(--gold);margin:16px auto;opacity:.6;}
+.figure-card ul{list-style:none;text-align:left;}
+.figure-card li{font-size:13.5px;padding:6px 0;border-bottom:1px dashed rgba(216,201,163,.25);display:flex;gap:8px;}
+.figure-card li:last-child{border-bottom:none;}
+.figure-card li b{color:#e9d8a8;flex:0 0 auto;}
+
+/* 手風琴 */
+.acc{border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:14px;background:var(--card);}
+.acc-head{
+  width:100%;text-align:left;background:none;border:none;cursor:pointer;
+  padding:16px 20px;font-family:inherit;font-size:16px;font-weight:700;color:var(--ink);
+  display:flex;justify-content:space-between;align-items:center;letter-spacing:.05em;
+}
+.acc-head:hover{background:rgba(165,119,42,.06);}
+.acc-head .arrow{transition:transform .3s;color:var(--vermilion);font-size:13px;}
+.acc.open .acc-head .arrow{transform:rotate(180deg);}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .45s ease;}
+.acc.open .acc-body{max-height:1200px;}
+.acc-content{padding:0 20px 20px;font-size:14.5px;color:#4c4235;}
+.acc-content .wen{
+  background:#f3ecdb;border-left:3px solid var(--indigo);padding:12px 14px;border-radius:0 8px 8px 0;
+  margin:8px 0;font-size:14px;color:#3a332a;
+}
+
+/* 時間軸 */
+.timeline{position:relative;padding-left:30px;margin-top:8px;}
+.timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--gold),var(--vermilion));}
+.tl-item{position:relative;padding:0 0 22px 14px;}
+.tl-item::before{
+  content:"";position:absolute;left:-27px;top:8px;width:14px;height:14px;border-radius:50%;
+  background:var(--card);border:3px solid var(--vermilion);box-shadow:0 0 0 3px rgba(168,52,42,.12);
+}
+.tl-item .tl-year{font-weight:900;color:var(--vermilion);font-size:15px;letter-spacing:.05em;}
+.tl-item .tl-txt{font-size:14.5px;color:var(--ink-soft);margin-top:2px;}
+.tl-item.major::before{background:var(--vermilion);}
+.tl-item.major .tl-txt{color:var(--ink);font-weight:700;}
+
+/* 著作網格 */
+.work-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;}
+.work-item{
+  background:#fff;border:1px solid var(--line);border-radius:8px;padding:12px 14px;
+  font-size:13.5px;transition:all .25s;
+}
+.work-item:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 6px 14px rgba(60,45,25,.12);}
+.work-item b{display:block;color:var(--indigo);margin-bottom:2px;}
+.work-item span{color:var(--ink-soft);font-size:12.5px;}
+
+/* ===== 形成流程 ===== */
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;}
+.flow-step{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 16px;
+  position:relative;box-shadow:var(--shadow);transition:transform .3s;
+}
+.flow-step:hover{transform:translateY(-4px);}
+.flow-step .fs-num{
+  width:32px;height:32px;border-radius:50%;background:var(--indigo);color:#fff;
+  display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;margin-bottom:12px;
+}
+.flow-step h5{font-size:15px;font-weight:900;margin-bottom:6px;color:var(--vermilion-dark);}
+.flow-step p{font-size:13px;color:var(--ink-soft);}
+.flow-step .names{margin-top:10px;display:flex;flex-wrap:wrap;gap:4px;}
+.flow-step .names span{font-size:11.5px;background:rgba(46,74,91,.08);color:var(--indigo);padding:1px 9px;border-radius:999px;}
+.flow-step .names span.out{background:rgba(168,52,42,.08);color:var(--vermilion);text-decoration:line-through;}
+
+/* ===== 作品研讀 ===== */
+.study-tools{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:18px;align-items:center;}
+.toggle-group{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:#fff;}
+.toggle-group button{
+  border:none;background:none;padding:9px 22px;font-family:inherit;font-size:14px;
+  cursor:pointer;color:var(--ink-soft);font-weight:700;letter-spacing:.1em;transition:all .25s;
+}
+.toggle-group button.on{background:var(--vermilion);color:#fff;}
+.study-grid{display:grid;grid-template-columns:1fr 340px;gap:22px;align-items:start;}
+@media(max-width:920px){.study-grid{grid-template-columns:1fr;}}
+.text-col{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;padding:34px 32px;
+  box-shadow:var(--shadow);
+}
+@media(max-width:600px){.text-col{padding:24px 18px;}}
+.text-col .text-title{text-align:center;font-size:22px;font-weight:900;letter-spacing:.15em;margin-bottom:4px;}
+.text-col .text-author{text-align:center;font-size:13px;color:var(--ink-soft);margin-bottom:22px;letter-spacing:.2em;}
+.text-col .text-body{font-size:16.5px;line-height:2.2;text-align:justify;}
+.text-col .text-body p{margin-bottom:20px;text-indent:2em;}
+.text-col .text-body p.no-indent{text-indent:0;}
+.anno-word{
+  border-bottom:2px dotted var(--vermilion);cursor:pointer;transition:background .2s,color .2s;
+  padding:0 1px;border-radius:2px;
+}
+.anno-word:hover{background:rgba(168,52,42,.1);}
+.anno-word.active{background:var(--vermilion);color:#fff;}
+.anno-mark{
+  font-size:11px;color:var(--vermilion);font-weight:900;cursor:pointer;vertical-align:super;
+  margin-left:1px;user-select:none;
+}
+.anno-mark.active{color:#fff;background:var(--vermilion);border-radius:3px;padding:0 3px;}
+
+.anno-col{position:sticky;top:80px;}
+@media(max-width:920px){.anno-col{position:static;}}
+.anno-panel{
+  background:linear-gradient(165deg,#33291f,#4d3d29);color:#efe4c8;border-radius:14px;
+  padding:24px;box-shadow:var(--shadow);min-height:220px;
+}
+.anno-panel .ap-label{font-size:12px;letter-spacing:.3em;color:#c9b179;margin-bottom:8px;}
+.anno-panel .ap-title{font-size:20px;font-weight:900;color:#f3e3b0;margin-bottom:10px;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+.anno-panel .ap-num{
+  background:var(--vermilion);color:#fff;width:30px;height:30px;border-radius:50%;flex:0 0 auto;
+  display:inline-flex;align-items:center;justify-content:center;font-size:14px;font-weight:900;
+}
+.anno-panel .ap-body{font-size:14px;line-height:1.9;color:#e3d6b4;}
+.anno-panel .ap-nav{display:flex;gap:10px;margin-top:18px;}
+.anno-panel .ap-nav button{
+  flex:1;border:1px solid rgba(232,217,176,.35);background:rgba(255,255,255,.05);color:#e8d9b0;
+  padding:8px;border-radius:8px;font-family:inherit;font-size:13px;cursor:pointer;transition:all .2s;
+  letter-spacing:.1em;
+}
+.anno-panel .ap-nav button:hover:not(:disabled){background:var(--vermilion);border-color:var(--vermilion);color:#fff;}
+.anno-panel .ap-nav button:disabled{opacity:.35;cursor:not-allowed;}
+.anno-dots{display:flex;flex-wrap:wrap;gap:5px;margin-top:14px;}
+.anno-dots button{
+  width:26px;height:26px;border-radius:6px;border:1px solid rgba(232,217,176,.3);
+  background:rgba(255,255,255,.04);color:#d8c9a3;font-family:inherit;font-size:11px;cursor:pointer;transition:all .2s;
+}
+.anno-dots button:hover{border-color:var(--gold);color:#f3e3b0;}
+.anno-dots button.cur{background:var(--vermilion);border-color:var(--vermilion);color:#fff;font-weight:900;}
+
+.keypoints{margin-top:22px;}
+.kp-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px dashed var(--line);font-size:14.5px;}
+.kp-item:last-child{border-bottom:none;}
+.kp-item .kp-n{
+  flex:0 0 auto;width:28px;height:28px;border-radius:50%;background:rgba(165,119,42,.14);
+  color:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px;margin-top:3px;
+}
+
+/* ===== 測驗 ===== */
+.quiz-wrap{max-width:720px;margin:0 auto;}
+.quiz-card{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;padding:34px;box-shadow:var(--shadow);
+}
+.quiz-meta{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--ink-soft);margin-bottom:14px;letter-spacing:.08em;}
+.quiz-progress{height:8px;background:#e6dcc4;border-radius:999px;overflow:hidden;margin-bottom:24px;}
+.quiz-progress div{height:100%;background:linear-gradient(90deg,var(--vermilion),var(--gold));width:0;transition:width .4s;border-radius:999px;}
+.quiz-q{font-size:18.5px;font-weight:900;margin-bottom:22px;line-height:1.7;}
+.quiz-opts{display:grid;gap:12px;}
+.quiz-opt{
+  text-align:left;border:1.5px solid var(--line);background:#fff;border-radius:10px;
+  padding:14px 18px;font-family:inherit;font-size:15px;cursor:pointer;transition:all .2s;
+  display:flex;gap:12px;align-items:flex-start;line-height:1.6;
+}
+.quiz-opt .opt-key{
+  flex:0 0 auto;width:26px;height:26px;border-radius:50%;border:1.5px solid var(--line);
+  display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:900;color:var(--ink-soft);
+  transition:all .2s;
+}
+.quiz-opt:hover:not(.locked){border-color:var(--gold);background:#fdf9ee;transform:translateX(4px);}
+.quiz-opt.correct{border-color:#3d8b5f;background:rgba(61,139,95,.1);}
+.quiz-opt.correct .opt-key{background:#3d8b5f;border-color:#3d8b5f;color:#fff;}
+.quiz-opt.wrong{border-color:var(--vermilion);background:rgba(168,52,42,.07);}
+.quiz-opt.wrong .opt-key{background:var(--vermilion);border-color:var(--vermilion);color:#fff;}
+.quiz-opt.locked{cursor:default;}
+.quiz-opt.dim{opacity:.55;}
+.quiz-exp{
+  margin-top:20px;background:#f3ecdb;border-left:4px solid var(--gold);padding:14px 18px;
+  border-radius:0 8px 8px 0;font-size:14px;display:none;animation:fadeIn .4s;
+}
+.quiz-exp.show{display:block;}
+.quiz-exp b{color:var(--gold);}
+.quiz-next{
+  margin-top:20px;background:var(--vermilion);color:#fff;border:none;padding:12px 34px;
+  border-radius:999px;font-family:inherit;font-size:15px;font-weight:700;cursor:pointer;
+  letter-spacing:.15em;transition:all .25s;display:none;
+}
+.quiz-next.show{display:inline-block;animation:fadeIn .4s;}
+.quiz-next:hover{background:var(--vermilion-dark);transform:translateY(-2px);box-shadow:0 6px 16px rgba(168,52,42,.35);}
+.quiz-result{text-align:center;display:none;animation:popIn .5s;}
+.quiz-result.show{display:block;}
+.quiz-result .score-ring{
+  width:150px;height:150px;border-radius:50%;margin:10px auto 20px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  border:8px solid var(--gold);background:#fff;
+}
+.quiz-result .score-ring .s-num{font-size:40px;font-weight:900;color:var(--vermilion);}
+.quiz-result .score-ring .s-lab{font-size:12px;color:var(--ink-soft);letter-spacing:.2em;}
+.quiz-result h3{font-size:24px;font-weight:900;margin-bottom:8px;}
+.quiz-result p{color:var(--ink-soft);font-size:15px;margin-bottom:22px;}
+
+/* ===== 頁尾 ===== */
+footer{
+  background:#2a2622;color:#b7a67f;text-align:center;padding:44px 20px;margin-top:60px;
+  font-size:13px;letter-spacing:.1em;line-height:2;
+}
+footer .f-seal{
+  display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;
+  background:var(--vermilion);color:#fff;font-weight:900;border-radius:6px;margin-bottom:14px;transform:rotate(-3deg);
+}
+
+/* ===== 進場動畫 ===== */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.hidden{display:none !important;}
+
+/* 直排裝飾 */
+.vert-deco{
+  writing-mode:vertical-rl;font-size:13px;color:var(--ink-soft);letter-spacing:.5em;
+  border-left:1px solid var(--line);padding-left:12px;height:150px;opacity:.75;user-select:none;
+}
+</style>
+</head>
+<body>
+
+<div id="progressBar"></div>
+
+<!-- ============ 頁首 ============ -->
+<header>
+  <div class="hero-inner">
+    <div class="hero-seal">七子</div>
+    <h1>後七子</h1>
+    <div class="hero-sub">明代文學復古運動 ─ 互動教學</div>
+    <div class="hero-tags">
+      <span>文主秦漢</span><span>詩規盛唐</span><span>李攀龍・王世貞</span><span>嘉靖・隆慶年間</span><span>作品研讀：題海天落照圖後</span>
+    </div>
+    <div class="hero-quote">「文必西漢，詩必盛唐，<b>大曆以後書勿讀</b>。」</div>
+  </div>
+</header>
+
+<!-- ============ 導覽 ============ -->
+<nav>
+  <div class="nav-inner" id="navBar">
+    <a href="#overview" class="active">課程重點</a>
+    <a href="#members">七子成員</a>
+    <a href="#li">李攀龍</a>
+    <a href="#wang">王世貞</a>
+    <a href="#formation">七子的形成</a>
+    <a href="#text">作品研讀</a>
+    <a href="#quiz">隨堂測驗</a>
+  </div>
+</nav>
+
+<main>
+
+<!-- ============ 一、課程重點 ============ -->
+<section id="overview">
+  <div class="sec-head reveal"><div class="sec-num">壹</div><h2>課程重點</h2><div class="sec-line"></div></div>
+  <p class="sec-desc reveal">「後七子」指嘉靖、隆慶年間（約 1520–1570）主宰文壇的七位文學家，繼承前七子的復古主張，掀起明代第二次文學復古運動。</p>
+
+  <div class="key-grid">
+    <div class="key-card reveal">
+      <div class="knum">重點一</div>
+      <h4>文主秦漢，詩規盛唐</h4>
+      <p>李攀龍、王世貞輩，<b class="hl">文主秦、漢，詩規盛唐</b>。散文以秦漢古文為典範，詩歌以盛唐為標竿，主張「文自西京，詩自天寶而下，俱無足觀」。</p>
+    </div>
+    <div class="key-card reveal">
+      <div class="knum">重點二</div>
+      <h4>承繼前七子</h4>
+      <p>王、李之持論，<b class="hl-gold">大率與夢陽、景明相倡和</b>也。後七子的論點大多繼承了前七子「崇古摹古」的文學觀，於本朝獨推李夢陽。</p>
+    </div>
+    <div class="key-card reveal">
+      <div class="knum">重點三</div>
+      <h4>王李並稱，獨操文盟</h4>
+      <p>李攀龍才思勁鷙、名最高，獨心重王世貞，天下並稱<b class="hl">「王、李」</b>；攀龍歿後，王世貞獨操文柄二十年，聲華意氣籠蓋海內。</p>
+    </div>
+  </div>
+
+  <div class="compare reveal">
+    <div class="card">
+      <h4>前七子（弘治、正德年間）</h4>
+      <ul>
+        <li>代表人物：李夢陽、何景明</li>
+        <li>口號：「文必秦漢，詩必盛唐」</li>
+        <li>開啟明代文學復古運動的先聲</li>
+        <li>後七子於本朝獨推李夢陽</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>後七子（嘉靖、隆慶年間）</h4>
+      <ul>
+        <li>領袖：李攀龍、王世貞</li>
+        <li>成員：謝榛、宗臣、梁有譽、徐中行、吳國倫</li>
+        <li>年少氣銳，互相標榜，視當世無人</li>
+        <li>摹古較前七子更為徹底，甚至摹仿字句、化易為難</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card reveal" style="margin-top:22px;">
+    <h3>復古派的文學口號</h3>
+    <blockquote>「秦漢以後無文矣。」<span class="src">— 李攀龍〈答馮通府〉</span></blockquote>
+    <blockquote>「唐之文庸，宋之文陋，元無文。」<span class="src">— 王世貞《藝苑卮言》卷三</span></blockquote>
+    <blockquote>「文必西漢，詩必盛唐，大曆以後書勿讀。」<span class="src">—《明史・王世貞傳》載王世貞持論</span></blockquote>
+  </div>
+</section>
+
+<!-- ============ 二、成員 ============ -->
+<section id="members">
+  <div class="sec-head reveal"><div class="sec-num">貳</div><h2>「後七子」主要成員</h2><div class="sec-line"></div></div>
+  <p class="sec-desc reveal">點擊成員卡片，查看其生平與簡介。諸人多少年，才高氣銳，互相標榜，七才子之名播天下。</p>
+  <div class="member-grid" id="memberGrid"></div>
+</section>
+
+<!-- ============ 三、李攀龍 ============ -->
+<section id="li">
+  <div class="sec-head reveal"><div class="sec-num">參</div><h2>李攀龍（1514–1570）</h2><div class="sec-line"></div></div>
+  <div class="figure-grid">
+    <div class="figure-card reveal">
+      <div class="big-char">李攀龍</div>
+      <div class="zi">字于鱗・號滄溟</div>
+      <div class="years">正德九年（1514）— 隆慶四年（1570）</div>
+      <div class="divider"></div>
+      <ul>
+        <li><b>籍貫</b>山東濟南府歷城縣</li>
+        <li><b>科舉</b>嘉靖十九年山東鄉試第二名（亞元）；嘉靖二十三年進士</li>
+        <li><b>官職</b>刑部主事→順德知府→陝西提學副使→河南按察使</li>
+        <li><b>地位</b>後七子之首，天下並稱「王、李」</li>
+        <li><b>著作</b>《滄溟集》、《白雪樓詩集》、《古今詩刪》、《唐詩選》</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card reveal">
+        <h3>生平大事年表</h3>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-year">1514年・九歲喪父</div><div class="tl-txt">家貧，自奮於學。稍長與友人許邦才、殷士儋學為詩歌。</div></div>
+          <div class="tl-item"><div class="tl-year">嘉靖十九年（1540）</div><div class="tl-txt">中式山東鄉試第二名亞元。里人以其厭棄訓詁、日讀古書，共目為「狂生」。</div></div>
+          <div class="tl-item major"><div class="tl-year">嘉靖二十三年（1544）</div><div class="tl-txt">登甲辰科進士，授刑部廣東司主事。與李先芳、謝榛、吳維岳輩倡詩社，後七子之濫觴。</div></div>
+          <div class="tl-item"><div class="tl-year">歷官刑部・出守順德</div><div class="tl-txt">歷員外郎、山西司郎中，出為順德知府，有善政。</div></div>
+          <div class="tl-item"><div class="tl-year">嘉靖三十五年（1556）</div><div class="tl-txt">擢陝西提學副使。因陝西大地震，心悸念母，謝病歸，構「白雪樓」，名日益高。</div></div>
+          <div class="tl-item"><div class="tl-year">歸田近十年</div><div class="tl-txt">賓客造門，率謝不見，大吏至亦然，以是得「簡傲」聲；獨故交殷、許輩過從靡間。</div></div>
+          <div class="tl-item"><div class="tl-year">隆慶元年（1567）</div><div class="tl-txt">薦起浙江副使，二年改布政司左參政，道擢河南按察使。至是摧亢為和，賓客稍進。</div></div>
+          <div class="tl-item"><div class="tl-year">1570年・卒</div><div class="tl-txt">奔母喪歸，哀毀得疾；疾少間，一日心痛卒，年五十七。</div></div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <h3>性格風貌：狂生・孤傲・至孝（點擊展開原文）</h3>
+
+        <div class="acc">
+          <button class="acc-head">狂生：里人共目為狂生<span class="arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-content">
+            <div class="wen">「九歲而孤，家貧，自奮於學。稍長為諸生，與友人許邦才、殷士儋學為詩歌。已，益厭訓詁學，日讀古書，里人共目為狂生。」</div>
+            <p>李攀龍幼年喪父，家境貧寒卻奮發向學；後來厭棄科舉訓詁之學，日夜研讀古書，被鄉里視為「狂生」。這份不隨流俗的狂氣，正是他日後倡導復古、睥睨當世的性格底色。</p>
+          </div></div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-head">孤傲：「文可檄致邪？」<span class="arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-content">
+            <div class="wen">「鄉人殷學為巡撫，檄令屬文，攀龍怫然曰：『文可檄致邪？』拒不應。會其地數震，攀龍心懷，念母思歸，遂謝病。」</div>
+            <p>同鄉殷學官居巡撫，以官方文書（檄）命令李攀龍撰寫文章，攀龍怒而拒絕：「文章豈能用公文召喚得來？」其後適逢地震，便藉機稱病歸鄉。吏部看重其才，援何景明之例特予「告歸」，保留再起之資。</p>
+          </div></div>
+        </div>
+
+        <div class="acc">
+          <button class="acc-head">簡傲與至孝：白雪樓中謝賓客<span class="arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-content">
+            <div class="wen">「攀龍既歸，構白雪樓，名日益高。賓客造門，率謝不見，大吏至，亦然，以是得簡傲聲。……無何，奔母喪歸，哀毀得疾，疾少間，一日心痛卒。」</div>
+            <p>歸田後築白雪樓，閉門謝客，即使大官來訪也不接見，因此得到「簡傲」之名；但與故交殷士儋、許邦才往來不絕。隆慶復出後性情轉為謙和；最終因母親過世哀傷過度而發病去世，可見其<b class="hl">事母至孝</b>。</p>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <h3>李攀龍的文學觀</h3>
+        <p><b class="hl">① 全面繼承前七子「崇古摹古」的觀點</b> — 持論謂「文自西京，詩自天寶而下，俱無足觀」，於本朝獨推李夢陽；諸子翕然和之，非是則詆為「宋學」。</p>
+        <p><b class="hl-gold">② 摹仿字句、化易為難，比李夢陽更甚</b> — 其為詩務以聲調勝，所擬樂府，或更古數字為己作；文則刻意使用冷僻字，艱澀拗口。</p>
+        <p><b class="hl">③ 後人評價：「文則聱牙戟口，讀者至不能終篇。」</b> — 好之者推為一代宗匠，批評者則多所抉摘。</p>
+      </div>
+
+      <div class="card reveal">
+        <h3>作品舉隅</h3>
+        <div class="acc">
+          <button class="acc-head">〈送寧津縣訓導張伯壽序〉：刻意用冷僻字<span class="arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-content">
+            <div class="wen">「公方謂：固且愈于次趄宦門，卑疵而前，孅趨而言，唯苞苴是先，以偷諛于傍，幸色少假，恃以無患，一中目攝，躬不自措，薾然無丈夫顔而日夏畦者哉！吾寧為此不為彼矣！」</div>
+            <p>此文實為讚揚張伯壽的祖父<b>張鼎</b>堅持操守、不畏權奸而遭受迫害。但寫作時刻意使用冷僻字，讓句子讀起來艱澀拗口，是其「化易為難」文風的代表。</p>
+          </div></div>
+        </div>
+        <div class="acc">
+          <button class="acc-head">〈答馮通府〉：「秦漢以後無文矣」<span class="arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-content">
+            <div class="wen">「文，大業也；校文，大役也。秦漢以後無文矣。……然而一經傳誦，動駭耳目，未嘗不以為不近人情者。不知千有餘歲，精氣旋復，遂跨遷、固，勢必至爾。滔滔者天下皆是也，而誰以易之哉？」</div>
+            <p>此文揭示兩點立場：① <b class="hl">摹仿更久遠的秦漢文章，標示更高古的格調</b>，直追司馬遷、班固；② <b class="hl-gold">不願意順應大眾化的審美需求</b>，即使「動駭耳目」「不近人情」亦在所不惜。</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 四、王世貞 ============ -->
+<section id="wang">
+  <div class="sec-head reveal"><div class="sec-num">肆</div><h2>王世貞（1526–1590）</h2><div class="sec-line"></div></div>
+  <div class="figure-grid">
+    <div class="figure-card reveal">
+      <div class="big-char">王世貞</div>
+      <div class="zi">字元美・號鳳洲・弇州山人</div>
+      <div class="years">嘉靖五年（1526）— 萬曆十八年（1590）</div>
+      <div class="divider"></div>
+      <ul>
+        <li><b>籍貫</b>直隸蘇州府太倉州（今江蘇太倉）</li>
+        <li><b>身分</b>政治家、文學家、史學家、收藏家、藝術家</li>
+        <li><b>科舉</b>嘉靖二十二年舉人；嘉靖二十六年（1547）進士，年方二十</li>
+        <li><b>官職</b>刑部主事→山東青州兵備副使→南京刑部尚書</li>
+        <li><b>地位</b>攀龍歿後，獨操文柄二十年</li>
+        <li><b>贈官</b>太子少保</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card reveal">
+        <h3>生平大事年表</h3>
+        <div class="timeline">
+          <div class="tl-item"><div class="tl-year">1526年・生有異稟</div><div class="tl-txt">為大同總督王忬之子，讀書過目不忘。</div></div>
+          <div class="tl-item major"><div class="tl-year">嘉靖二十六年（1547）</div><div class="tl-txt">年二十中進士，初任刑部主事，遷員外郎、郎中。為官正直，不附權貴。</div></div>
+          <div class="tl-item"><div class="tl-year">相助楊繼盛</div><div class="tl-txt">楊繼盛受嚴嵩陷害下獄，王世貞盡力相助，嚴嵩對此十分憤恨。</div></div>
+          <div class="tl-item major"><div class="tl-year">父難・灤河之禍</div><div class="tl-txt">其父王忬因灤河決堤事被嚴嵩下獄。王世貞與弟王世懋每天在嚴嵩門外自罰請求寬免，朝中無人敢言，王忬最終在西市處決。</div></div>
+          <div class="tl-item"><div class="tl-year">隆慶元年（1567）</div><div class="tl-txt">伏闕為父辯冤，得大學士徐階相助，王忬平反，追復官職。此後歷官河南、浙江、山西等地。</div></div>
+          <div class="tl-item"><div class="tl-year">萬曆四年（1576）</div><div class="tl-txt">擢南京大理寺卿，未到任，以「薦舉涉濫」被吏部糾察奪俸；又遭彈劾「大節已虧」，回籍聽候別用。</div></div>
+          <div class="tl-item major"><div class="tl-year">萬曆十五年—十七年</div><div class="tl-txt">起補南京刑部右侍郎；萬曆十七年三品考滿，升南京刑部尚書。</div></div>
+          <div class="tl-item"><div class="tl-year">萬曆十八年（1590）</div><div class="tl-txt">告休回里，十一月廿七日卒，贈太子少保。病亟時猶手捧蘇軾文集諷玩不置。</div></div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <h3>著作頗富</h3>
+        <div class="work-grid">
+          <div class="work-item"><b>《弇州山人四部稿》</b><span>一百七十四卷</span></div>
+          <div class="work-item"><b>《弇州山人續稿》</b><span>二百一十八卷</span></div>
+          <div class="work-item"><b>《弇山堂別集》</b><span>一百卷，史料彙編</span></div>
+          <div class="work-item"><b>《國朝紀要》</b><span>十卷</span></div>
+          <div class="work-item"><b>《天言匯錄》</b><span>十卷</span></div>
+          <div class="work-item"><b>《識小錄》</b><span>十卷</span></div>
+          <div class="work-item"><b>《嘉靖以來內閣首輔傳》</b><span>明代閣臣傳記</span></div>
+          <div class="work-item"><b>《讀書後》</b><span>讀書札記</span></div>
+          <div class="work-item"><b>《名卿紀績》</b><span>名臣事蹟</span></div>
+          <div class="work-item"><b>《明野史匯》</b><span>一百卷</span></div>
+          <div class="work-item"><b>《藝苑卮言》</b><span>十二卷，論南北曲源流與文學評論</span></div>
+          <div class="work-item"><b>《鳴鳳記》</b><span>傳奇劇本，以批判嚴嵩為題材</span></div>
+          <div class="work-item"><b>《史乘考誤》</b><span>史學考訂</span></div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <h3>《金瓶梅》作者之謎：蘭陵笑笑生＝王世貞？</h3>
+        <p>清人筆記多將《金瓶梅》作者歸於王世貞：</p>
+        <blockquote>「《金瓶梅》一書傳為鳳州（王世貞）門人之作也，或云即出鳳州手。」<span class="src">— 清・謝頤序《金瓶梅》（康熙年間）</span></blockquote>
+        <blockquote>「世知《四部稿》為弇州先生生平著作，而不知《金瓶梅》一書也先生中年筆也。」<span class="src">— 清・宋起鳳《稗說》卷三〈王弇州著作〉</span></blockquote>
+        <blockquote>撰者系「（王）忬子鳳洲」。<span class="src">— 清・顧公燮《消夏閒記摘抄》</span></blockquote>
+        <div class="acc" style="margin-top:14px;">
+          <button class="acc-head">傳奇故事：砒霜染書，毒殺嚴世蕃<span class="arrow">▼</span></button>
+          <div class="acc-body"><div class="acc-content">
+            <p>傳說王世貞出任山東承宣布政使司副使期間，其父王忬因不肯交出珍藏的《清明上河圖》，被嚴嵩之子嚴世蕃冤殺。</p>
+            <p>而嚴世蕃好讀奇書，王世貞乃著《金瓶梅》，書中多淫穢內容，令讀者愛不釋手；又在<b class="hl">書角蘸以砒霜毒液</b>，將書賣給嚴世蕃。嚴世蕃嗜讀此書，不停以手在嘴上沾唾液翻頁，讀完全書，遂<b class="hl">毒發身亡</b>。</p>
+            <p style="font-size:13px;color:var(--ink-soft);">※ 此為民間傳說，附會了王忬之死與《清明上河圖》的恩怨，真實作者身分至今仍是學術懸案。</p>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <h3>獨操柄二十年</h3>
+        <blockquote>「世貞始與李攀龍狎主文盟，攀龍歿，獨操柄二十年。才最高，地望最顯，聲華意氣籠蓋海內。一時士大夫及山人、詞客、衲子、羽流，莫不奔走門下。片言褒賞，聲價驟起。其持論，文必西漢，詩必盛唐，大曆以後書勿讀，而藻飾太甚。<b>晚年，攻者漸起，世貞顧漸造平淡。</b>病亟時，劉鳳往視，見其手蘇子瞻集，諷玩不置也。」<span class="src">—《明史・王世貞傳》</span></blockquote>
+        <p>值得注意的是：王世貞晚年文學思想轉變，<b class="hl">漸造平淡、恬淡自然</b>，臨終前仍把玩蘇軾文集——與其早年「藻飾太甚」的復古立場形成微妙對照。</p>
+      </div>
+
+      <div class="card reveal">
+        <h3>王世貞的文學觀</h3>
+        <p><b class="hl">① 支持李攀龍的論點，以不世出之才自居</b> — 雖不如李攀龍泥古不化，但始終拥护復古立場。〈書與于麟論詩事〉稱李攀龍：「子匠心而材古也，其工極矣。」</p>
+        <p><b class="hl-gold">② 倡言復古，對唐宋名家多所挑剔</b> — 《藝苑卮言》卷三：「唐之文庸，宋之文陋，元無文。」</p>
+        <p><b class="hl">③ 重視法度問題</b> — 《藝苑卮言》卷一提出「三法」：</p>
+        <blockquote>「首尾開闔，繁簡奇正，各極其度，<b>篇法</b>也。抑揚頓挫，長短節奏，各極其致，<b>句法</b>也。點掇關鍵，金石綺彩，各極其造，<b>字法</b>也。」<span class="src">—《藝苑卮言》卷一：篇法・句法・字法</span></blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 五、形成 ============ -->
+<section id="formation">
+  <div class="sec-head reveal"><div class="sec-num">伍</div><h2>後七子的形成</h2><div class="sec-line"></div></div>
+  <p class="sec-desc reveal">從刑部詩社到「七才子之名播天下」，再到李攀龍被推為盟主——後七子的結盟與嬗變。</p>
+
+  <div class="flow">
+    <div class="flow-step reveal">
+      <div class="fs-num">1</div>
+      <h5>刑曹倡詩社</h5>
+      <p>李攀龍始官刑曹（刑部），與同僚倡立詩社。</p>
+      <div class="names"><span>李攀龍</span><span class="out">李先芳</span><span class="out">謝榛</span><span class="out">吳維岳</span></div>
+    </div>
+    <div class="flow-step reveal">
+      <div class="fs-num">2</div>
+      <h5>王李定交</h5>
+      <p>王世貞初釋褐（中進士），由李先芳引入社，遂與攀龍定交。明年先芳出為外吏。</p>
+      <div class="names"><span>王世貞加入</span></div>
+    </div>
+    <div class="flow-step reveal">
+      <div class="fs-num">3</div>
+      <h5>號稱「五子」</h5>
+      <p>又二年，宗臣、梁有譽入社，是為「五子」。</p>
+      <div class="names"><span>宗臣</span><span>梁有譽</span></div>
+    </div>
+    <div class="flow-step reveal">
+      <div class="fs-num">4</div>
+      <h5>改稱「七子」</h5>
+      <p>未幾，徐中行、吳國倫亦至，乃改稱「七子」。諸人多少年，才高氣銳，互相標榜，視當世無人。</p>
+      <div class="names"><span>徐中行</span><span>吳國倫</span></div>
+    </div>
+    <div class="flow-step reveal">
+      <div class="fs-num">5</div>
+      <h5>攀龍為魁</h5>
+      <p>擯先芳、維岳不與，已而謝榛亦被擯，攀龍遂為之魁。持論「文自西京，詩自天寶而下俱無足觀」，非是則詆為宋學。</p>
+      <div class="names"><span class="out">李先芳被擯</span><span class="out">吳維岳被擯</span><span class="out">謝榛被擯</span></div>
+    </div>
+  </div>
+
+  <div class="card reveal" style="margin-top:22px;">
+    <h3>文壇地位</h3>
+    <p>・李攀龍才思勁鷙，名最高，<b class="hl">獨心重王世貞</b>，天下亦並稱<b class="hl">「王、李」</b>。</p>
+    <p>・又與李夢陽、何景明並稱<b class="hl-gold">「何、李、王、李」</b>，代表明代復古運動的兩代宗師。</p>
+    <p>・李攀龍自號「滄溟」；其詩務以聲調勝，所擬樂府或更古數字為己作；文則聱牙戟口，好之者推為一代宗匠。</p>
+  </div>
+</section>
+
+<!-- ============ 六、作品研讀 ============ -->
+<section id="text">
+  <div class="sec-head reveal"><div class="sec-num">陸</div><h2>作品研讀：題海天落照圖後</h2><div class="sec-line"></div></div>
+  <p class="sec-desc reveal">王世貞記述名畫《海天落照圖》輾轉流離的命運。<b class="hl">點擊文中紅色標記的字詞</b>，右側將顯示注釋；亦可切換原文／語譯對照。</p>
+
+  <div class="study-tools reveal">
+    <div class="toggle-group">
+      <button id="btnOrig" class="on" onclick="switchMode('orig')">原　文</button>
+      <button id="btnTrans" onclick="switchMode('trans')">語　譯</button>
+    </div>
+    <span style="font-size:13px;color:var(--ink-soft);">文本選自三民書局《明散文選》</span>
+  </div>
+
+  <div class="study-grid reveal">
+    <div class="text-col">
+      <div class="text-title">題海天落照圖後</div>
+      <div class="text-author">明・王世貞</div>
+
+      <div class="text-body" id="origText">
+        <p>《海天落照圖》，相傳<span class="anno-word" data-a="1">小李將軍昭道</span><sup class="anno-mark" data-a="1">1</sup>作，<span class="anno-word" data-a="2">宣和秘藏</span><sup class="anno-mark" data-a="2">2</sup>，不知何年為常熟<span class="anno-word" data-a="3">劉以則</span><sup class="anno-mark" data-a="3">3</sup>所收，轉落<span class="anno-word" data-a="4">吳城湯氏</span><sup class="anno-mark" data-a="4">4</sup>。嘉靖中，有<span class="anno-word" data-a="5">郡守</span><sup class="anno-mark" data-a="5">5</sup>，不欲言其名，<span class="anno-word" data-a="6">以分宜子大符意迫得之</span><sup class="anno-mark" data-a="6">6</sup>。湯見<span class="anno-word" data-a="7">消息非常</span><sup class="anno-mark" data-a="7">7</sup>，<span class="anno-word" data-a="8">乃延仇英實父別室</span><sup class="anno-mark" data-a="8">8</sup>，摹一本，<span class="anno-word" data-a="9">將欲為米顛狡獪</span><sup class="anno-mark" data-a="9">9</sup>，而<span class="anno-word" data-a="10">為怨家所發</span><sup class="anno-mark" data-a="10">10</sup>。守怒甚，<span class="anno-word" data-a="11">將致叵測</span><sup class="anno-mark" data-a="11">11</sup>。湯不獲已，<span class="anno-word" data-a="12">因割陳緝熙等三詩於仇本後</span><sup class="anno-mark" data-a="12">12</sup>，而出真跡，邀所善<span class="anno-word" data-a="13">彭孔嘉</span><sup class="anno-mark" data-a="13">13</sup>輩，置酒泣別，摩挲三日後歸守，守以歸大符。大符家名畫近千卷，皆出其下。尋<span class="anno-word" data-a="14">坐法</span><sup class="anno-mark" data-a="14">14</sup>，<span class="anno-word" data-a="15">籍入天府</span><sup class="anno-mark" data-a="15">15</sup>。隆慶初，一<span class="anno-word" data-a="16">中貴</span><sup class="anno-mark" data-a="16">16</sup>攜出，不甚愛賞，其位下<span class="anno-word" data-a="17">小璫</span><sup class="anno-mark" data-a="17">17</sup>竊之。時<span class="anno-word" data-a="18">朱忠僖領緹騎</span><sup class="anno-mark" data-a="18">18</sup>，密以重貲購，中貴詰責甚急，小璫懼而投諸火。此癸酉秋事也。</p>
+        <p>余自燕中聞之<span class="anno-word" data-a="19">拾遺人</span><sup class="anno-mark" data-a="19">19</sup>，相與慨嘆妙跡永絕。今年春，歸息<span class="anno-word" data-a="20">弇園</span><sup class="anno-mark" data-a="20">20</sup>，湯氏偶以仇本見售，為驚喜，不論<span class="anno-word" data-a="21">直</span><sup class="anno-mark" data-a="21">21</sup>收之。按<span class="anno-word" data-a="22">《宣和畫譜》</span><sup class="anno-mark" data-a="22">22</sup>稱昭道有《落照》、《海岸》二圖，不言所謂《海天落照》者。其圖之有<span class="anno-word" data-a="23">御題</span><sup class="anno-mark" data-a="23">23</sup>，有<span class="anno-word" data-a="24">瘦金瓢印</span><sup class="anno-mark" data-a="24">24</sup>與否，亦無從辨證，第睹此臨跡之妙乃爾，因以想見<span class="anno-word" data-a="25">隆準公</span><sup class="anno-mark" data-a="25">25</sup>之驚世也。<span class="anno-word" data-a="26">實父十指如葉玉人</span><sup class="anno-mark" data-a="26">26</sup>，<span class="anno-word" data-a="27">即臨本亦何必減逸少《宣示》、信本《蘭亭》哉</span><sup class="anno-mark" data-a="27">27</sup>！老人饞眼，今日飽矣，為題其後。</p>
+      </div>
+
+      <div class="text-body hidden" id="transText">
+        <p>《海天落照圖》，相傳是唐朝畫家，有小李將軍之稱的李昭道所畫。曾經宋徽宗賞鑑，係宣和秘藏之寶。不知何時，竟為常熟人劉以則所有，後又輾轉落入蘇州湯某之手。</p>
+        <p>本朝嘉靖年間，有位郡守，在此不想透露他的姓名，為了迎合嚴嵩之子嚴世蕃的心願，強行索要這幅名畫。湯某見事態嚴重，非同小可，便請來名畫家仇英，在密室中悄悄臨摹了一幅，準備效法米顛米芾，偷樑換柱，瞞天過海，不料被仇人告發。郡守聞知大怒，必欲置湯某於死地。湯氏迫不得已，只好從原畫上把陳緝熙等名家題寫的三首詩割下，綴於仇英摹本之後。然後取出真跡，邀來彭孔嘉等至交，置辦酒席，與名畫哭別。在戀戀不捨地把玩三日之後，才忍痛交出，郡守拿去獻給嚴世蕃。嚴家藏有名畫近千幅，卻都不及此畫名貴。不久，嚴氏遭到法辦，《海天落照圖》也被籍沒入官。</p>
+        <p>隆慶初年，又被一個大宦官私自攜出，卻不知珍愛，讓手下的一個小宦官偷走。那時，統領錦衣衛的朱希孝暗中想出重金購買此畫。那個大宦官為此追查不休，小宦官驚恐之下，索性將畫一把火燒了。這是萬曆初年秋天的事。</p>
+        <p>我在燕京時曾聽收購古玩的人說起，不禁相對慨嘆，稀世珍品，就此無存。今年春天，罷歸弇園。恰逢湯某要將仇英摹本出售，我聞訊驚喜交加，顧不上講價錢，收買下來。</p>
+        <p>謹按：《宣和畫譜》載，李昭道有《落照》、《海岸》兩幅畫，並未提及《海天落照圖》這幅畫。真跡上是否有徽宗的親筆御題，以及瘦金體刻就的專用瓢形印章，現也無從查驗了。但是，只要親眼目睹仇氏臨本已經精妙如此，也就可以想見這位李唐皇裔的驚世絕技了。仇英十指如葉玉人，即便是臨本又怎麼能肯定就不如王羲之臨《宣示表》、歐陽詢臨《蘭亭集序》那樣精美絕倫呢！人老眼饞，今日可算大飽眼福了。為此，敬題於此畫之後。</p>
+      </div>
+    </div>
+
+    <div class="anno-col">
+      <div class="anno-panel">
+        <div class="ap-label">注 釋 面 板</div>
+        <div class="ap-title"><span class="ap-num" id="apNum">1</span><span id="apTitle">小李將軍昭道</span></div>
+        <div class="ap-body" id="apBody">點擊左側原文中標紅的字詞，即可查看對應注釋。</div>
+        <div class="ap-nav">
+          <button id="apPrev" onclick="navAnno(-1)">← 上一則</button>
+          <button id="apNext" onclick="navAnno(1)">下一則 →</button>
+        </div>
+        <div class="anno-dots" id="annoDots"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card reveal keypoints" style="margin-top:22px;">
+    <h3>文章重點分析</h3>
+    <div class="kp-item"><div class="kp-n">1</div><div>文章<b class="hl">前半部分</b>描述名畫《海天落照圖》屢遭磨難、數易其主的經歷，<b class="hl">揭露朝廷權奸嚴世蕃的貪暴行為</b>，透露出作者強烈的激憤之情；<b class="hl-gold">後半部分</b>寫作者收購仇英摹本的情況，迸發了復得名畫的驚喜之情。</div></div>
+    <div class="kp-item"><div class="kp-n">2</div><div>全文圍繞《海天落照圖》的命運展開一系列曲折起伏的敘述，通過人們對其<b class="hl">惜之、奪之、輕之、竊之、賜之、嘆之</b>的種種行狀。</div></div>
+    <div class="kp-item"><div class="kp-n">3</div><div>一方面顯示了此畫的<b class="hl">珍貴</b>，另一方面也刻畫了<b class="hl-gold">人品高下不一的人物群像</b>，展示了那個時代現實社會的人情世態。</div></div>
+    <div class="kp-item"><div class="kp-n">4</div><div>全文<b class="hl">前半部分壓抑而含蓄，後半部分明快而直露</b>，兩相對照，各顯其妙。</div></div>
+  </div>
+
+  <div class="card reveal">
+    <h3>名畫命運一覽（敘事線索）</h3>
+    <div class="timeline">
+      <div class="tl-item"><div class="tl-year">相傳唐・李昭道作</div><div class="tl-txt">小李將軍手筆，曾入宋徽宗宣和秘藏。</div></div>
+      <div class="tl-item"><div class="tl-year">常熟劉以則 → 吳城湯氏</div><div class="tl-txt">不知何年流出內府，輾轉入民間藏家之手。</div></div>
+      <div class="tl-item major"><div class="tl-year">嘉靖中・郡守迫奪</div><div class="tl-txt">郡守迎合嚴世蕃（大符）之意強索；湯氏延仇英密室摹本欲行「米顛狡獪」，為怨家所發，被迫割陳緝熙等三詩綴於摹本，泣別交出真跡。</div></div>
+      <div class="tl-item"><div class="tl-year">入嚴府 → 籍沒天府</div><div class="tl-txt">嚴家名畫近千卷，皆出其下。嚴世蕃坐法，畫被籍沒入官。</div></div>
+      <div class="tl-item"><div class="tl-year">隆慶初・中貴攜出</div><div class="tl-txt">大宦官私自攜出卻不甚愛賞，為小璫所竊。</div></div>
+      <div class="tl-item major"><div class="tl-year">癸酉秋・投諸火</div><div class="tl-txt">朱希孝領緹騎密以重貲購，中貴詰責甚急，小璫懼而投諸火——真跡就此永絕。</div></div>
+      <div class="tl-item"><div class="tl-year">今年春・仇本歸弇園</div><div class="tl-txt">王世貞罷歸弇園，湯氏以仇英摹本見售，世貞驚喜，不論直收之，為題其後。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 七、測驗 ============ -->
+<section id="quiz">
+  <div class="sec-head reveal"><div class="sec-num">柒</div><h2>隨堂測驗</h2><div class="sec-line"></div></div>
+  <p class="sec-desc reveal">共 10 題，測驗你對後七子與本篇課文的掌握程度。作答後會顯示解析。</p>
+  <div class="quiz-wrap reveal">
+    <div class="quiz-card">
+      <div id="quizBody">
+        <div class="quiz-meta"><span id="qCount">第 1 題 / 共 10 題</span><span id="qScore">得分：0</span></div>
+        <div class="quiz-progress"><div id="qBar"></div></div>
+        <div class="quiz-q" id="qText"></div>
+        <div class="quiz-opts" id="qOpts"></div>
+        <div class="quiz-exp" id="qExp"></div>
+        <button class="quiz-next" id="qNext" onclick="nextQ()">下一題 →</button>
+      </div>
+      <div class="quiz-result" id="quizResult">
+        <div class="score-ring"><div class="s-num" id="finalScore">0</div><div class="s-lab">／ 10 題</div></div>
+        <h3 id="resultTitle"></h3>
+        <p id="resultMsg"></p>
+        <button class="quiz-next show" onclick="restartQuiz()">重新測驗 ↻</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="f-seal">文</div>
+  <div>後七子・明代文學復古運動　互動教學網頁</div>
+  <div>資料來源：課程講義《後七子》、《後七子補充講義》</div>
+  <div style="opacity:.6;margin-top:8px;">文必秦漢・詩必盛唐</div>
+</footer>
+
+<!-- ============ 成員燈箱 ============ -->
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="close-btn" onclick="closeModal()">✕</button>
+    <h3 id="mName"></h3>
+    <div class="mzi" id="mZi"></div>
+    <div class="mbody" id="mBody"></div>
+  </div>
+</div>
+
+<script>
+/* ================= 成員資料 ================= */
+const members=[
+ {n:"李攀龍",zi:"字于鱗，號滄溟（1514–1570）",role:"領袖",leader:true,brief:"後七子之首。九歲喪父，自奮於學，里人目為狂生。文主秦漢，詩規盛唐。",
+  body:"<h5>籍貫與科舉</h5><p>山東濟南府歷城人。嘉靖十九年中式山東鄉試第二名亞元；嘉靖二十三年登進士，授刑部廣東司主事。</p><h5>仕宦與性格</h5><p>歷員外郎、郎中，出為順德知府，有善政；擢陝西提學副使，因地震謝病歸，構白雪樓，閉門謝客，得簡傲聲。鄉人殷學為巡撫，檄令屬文，攀龍怫然曰：「文可檄致邪？」拒不應。</p><h5>文學成就</h5><p>全面繼承前七子「崇古摹古」之說，摹仿字句、化易為難較李夢陽更甚；詩務以聲調勝，文則「聱牙戟口，讀者至不能終篇」。天下並稱「王、李」，又與何景明、李夢陽並稱「何、李、王、李」。著有《滄溟集》、《白雪樓詩集》、《古今詩刪》、《唐詩選》。</p>"},
+ {n:"王世貞",zi:"字元美，號鳳洲、弇州山人（1526–1590）",role:"領袖",leader:true,brief:"才最高，地望最顯。攀龍歿後獨操文柄二十年，官至南京刑部尚書。",
+  body:"<h5>籍貫與科舉</h5><p>直隸蘇州府太倉州人，大同總督王忬之子。生有異稟，讀書過目不忘；嘉靖二十六年中進士，年方二十。</p><h5>仕宦與家難</h5><p>為官正直，不附權貴。楊繼盛受嚴嵩陷害下獄，世貞盡力相助。其父王忬因灤河決堤事被嚴嵩下獄，世貞與弟世懋日在嚴嵩門外自罰請免，王忬終在西市處決；隆慶元年伏闕辯冤，得徐階相助平反。官至南京刑部尚書，贈太子少保。</p><h5>文學與著述</h5><p>持論「文必西漢，詩必盛唐，大曆以後書勿讀」，重視篇法、句法、字法；晚年漸造平淡。著作極富，有《弇州山人四部稿》、《弇山堂別集》、《藝苑卮言》、《鳴鳳記》等；相傳《金瓶梅》作者蘭陵笑笑生即為其人。</p>"},
+ {n:"謝榛",zi:"字茂秦，號四溟山人",role:"成員",leader:false,brief:"臨清人，早年與李攀龍等同倡詩社，為五子之一，後被擯於七子之外。",
+  body:"<p>臨清人。李攀龍始官刑曹時，謝榛即與其同倡詩社，是最早的核心成員之一。</p><p>後七子結盟過程中，成員屢有更動：先擯李先芳、吳維岳，<b class=\"hl\">已而謝榛亦被擯</b>，攀龍遂為之魁。謝榛雖名列早期「五子」，最終未留在「後七子」定稱之中，但其詩論對後七子早期影響甚深。</p>"},
+ {n:"宗臣",zi:"字子相，號方城山人",role:"成員",leader:false,brief:"「五子」時期加入，少年才高氣銳，七才子之名播天下時的核心成員之一。",
+  body:"<p>李先芳出為外吏後又二年，宗臣與梁有譽入社，是為「五子」。</p><p>諸人多少年，才高氣銳，互相標榜，視當世無人，七才子之名播天下。宗臣以文章名世，其報劉一丈書等篇，針砭官場醜態，為明代散文名篇。</p>"},
+ {n:"梁有譽",zi:"字公實，號蘭汀",role:"成員",leader:false,brief:"與宗臣同於「五子」時期加入，與諸子互相標榜，才名播於天下。",
+  body:"<p>嘉靖間進士。「又二年，宗臣、梁有譽入，是為五子」，是後七子結盟過程中的關鍵增補成員。</p><p>與諸子同倡復古，文主秦漢、詩規盛唐，才高氣銳，共樹七才子之名。</p>"},
+ {n:"徐中行",zi:"字子與，號天目山人",role:"成員",leader:false,brief:"五子之後加入，正式改稱「七子」。家居時坐客恆滿，與李攀龍交相得。",
+  body:"<p>「未幾，徐中行、吳國倫亦至，乃改稱七子。」七子的定名即由徐中行與吳國倫的加入而完成。</p><p>李攀龍歸田時，徐中行亦家居，「坐客恆滿，二人聞之，交相得也」——與攀龍閉門謝客的簡傲形成有趣對照，可見二人聲氣相通。</p>"},
+ {n:"吳國倫",zi:"字明卿，號川樓",role:"成員",leader:false,brief:"最後一位加入者，七子之名至此底定，七才子之名播天下。",
+  body:"<p>徐中行、吳國倫亦至，「乃改稱七子」。後七子成員至此齊備。</p><p>諸人多少年，才高氣銳，互相標榜，視當世無人；其持論大率與前七子李夢陽、何景明相倡和，文主秦漢，詩規盛唐。</p>"}
+];
+
+const grid=document.getElementById('memberGrid');
+members.forEach((m,i)=>{
+  const d=document.createElement('div');
+  d.className='member reveal'+(m.leader?' leader':'');
+  d.innerHTML=`<div class="avatar">${m.n[0]}</div><h4>${m.n}</h4><div class="mzi">${m.zi}</div>
+  <span class="mrole${m.leader?'':' normal'}">${m.role}</span>
+  <div class="mbrief">${m.brief}</div><div class="more-hint">點擊查看詳情 →</div>`;
+  d.onclick=()=>openModal(i);
+  grid.appendChild(d);
+});
+
+function openModal(i){
+  const m=members[i];
+  document.getElementById('mName').textContent=m.n;
+  document.getElementById('mZi').textContent=m.zi;
+  document.getElementById('mBody').innerHTML=m.body;
+  document.getElementById('modalBg').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  document.getElementById('modalBg').classList.remove('open');
+  document.body.style.overflow='';
+}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+/* ================= 手風琴 ================= */
+document.querySelectorAll('.acc-head').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    btn.parentElement.classList.toggle('open');
+  });
+});
+
+/* ================= 注釋系統 ================= */
+const annos={
+1:{t:"小李將軍昭道",d:"唐代畫家李思訓之子。李思訓在開元間曾任右武衛大將軍。李昭道也是畫家，被稱為「小李將軍」。"},
+2:{t:"宣和秘藏",d:"宣和，宋徽宗趙佶的年號，這裏指宋徽宗。秘藏：內府所藏。"},
+3:{t:"劉以則",d:"明代收藏家。"},
+4:{t:"吳城湯氏",d:"吳城，即蘇州。湯氏：當時的一個古董商。"},
+5:{t:"郡守",d:"知府。"},
+6:{t:"以分宜子大符意迫得之",d:"分宜，指嚴嵩，因他是江西分宜縣人，故稱之為分宜。大符：即嚴嵩的兒子嚴世蕃，字大符，曾與其父共同把持朝政。迫得之：逼迫取得。"},
+7:{t:"消息非常",d:"非常：不平常。湯某見事態嚴重，非同小可。"},
+8:{t:"乃延仇英實父別室",d:"延，約請。仇英：太倉人，移居吳郡（蘇州），字實父，號十洲，是當時的畫家，善於臨摹古畫。別室：另外的房間，指秘密的房間。"},
+9:{t:"將欲為米顛狡獪",d:"米顛，指宋代書畫家米芾。他為人玩世不恭，人稱「米顛」。米芾臨摹古代名人的字跡，常常可以亂真。狡獪（ㄎㄨㄞˋ）：狡黠的手段。這句是說，湯氏想請仇英代他臨摹一張上送嚴府，而自己留下唐代真跡。"},
+10:{t:"為怨家所發",d:"怨家，仇人家。發：揭發。"},
+11:{t:"將致叵測",d:"致，給。叵測：不可測，指大禍。"},
+12:{t:"因割陳緝熙等三詩於仇本後",d:"割，裁。陳緝熙：名鑒，曾做翰林官，是當時的一個鑒賞收藏家。這句是說，裁下陳緝熙等的三首詩，補在仇英摹本之後，使摹本看來如同真跡。"},
+13:{t:"彭孔嘉",d:"名年，蘇州人，善書畫，是書畫家文徵明的學生。"},
+14:{t:"尋坐法",d:"尋，不久。坐法：受法律制裁。嚴世蕃最後被判死刑。"},
+15:{t:"籍入天府",d:"籍，登記。這裏指查抄、沒收。天府：指內府，即宮中府庫。"},
+16:{t:"中貴",d:"指太監。"},
+17:{t:"小璫",d:"小璫（ㄉㄤ）：即小太監。"},
+18:{t:"朱忠僖領緹騎",d:"朱忠僖，名希孝，鳳陽懷遠人。緹（ㄊㄧˊ）騎：原意是貴官的侍從，在明代指緝捕人員。領緹騎：統領緝捕人員。朱希孝在當時是後軍都督府左都督，掌錦衣衛事。"},
+19:{t:"拾遺人",d:"指買賣舊貨的商人。"},
+20:{t:"弇園",d:"弇（ㄧㄢˇ）園：王世貞家中的花園名，在江蘇太倉縣。"},
+21:{t:"直",d:"同「值」，價目。"},
+22:{t:"《宣和畫譜》",d:"書名，宋徽宗時精於鑑賞的大臣所編，記錄宣和內府所藏的古代名畫。"},
+23:{t:"御題",d:"指宋徽宗的題字。"},
+24:{t:"瘦金瓢印",d:"瘦金：宋徽宗自號瘦金體，筆勢勁逸。瓢印：宋徽宗收藏的古書畫上所打的印鑒，有一種瓢形的，稱為瓢印。"},
+25:{t:"隆準公",d:"這裡指李昭道。漢高祖劉邦隆準（高鼻樑），後人稱之為隆準公。杜甫〈哀王孫〉：「高帝子孫皆隆準，龍種自與常人殊」。李昭道是唐朝宗室，所以這裡也稱他為「隆準公」。"},
+26:{t:"實父十指如葉玉人",d:"葉玉人：古代寓言，說一個匠人手巧，能夠把玉雕刻成極薄的樹葉（見《列子・說符》），這裡用來讚美仇英（實父）技藝精巧。"},
+27:{t:"即臨本亦何必減逸少《宣示》、信本《蘭亭》哉",d:"逸少，即晉代書法家王羲之，字逸少。《宣示》：即《宣示表》，楷書法帖，原為三國時鍾繇所寫，後代流傳的本子是王羲之臨寫的。信本：即唐代書法家歐陽詢，字信本，初學王羲之書，後自成一家。《蘭亭》：即《蘭亭序》帖的石刻本，是歐陽詢所臨摹刻石的。這裡用來比擬仇英臨李昭道畫的可貴。"}
+};
+let curAnno=1;
+const dotsBox=document.getElementById('annoDots');
+for(let k=1;k<=27;k++){
+  const b=document.createElement('button');
+  b.textContent=k;b.dataset.a=k;
+  b.onclick=()=>showAnno(k,true);
+  dotsBox.appendChild(b);
+}
+function showAnno(id,scroll){
+  curAnno=id;
+  const a=annos[id];
+  document.getElementById('apNum').textContent=id;
+  document.getElementById('apTitle').textContent=a.t;
+  document.getElementById('apBody').textContent=a.d;
+  document.getElementById('apPrev').disabled=(id===1);
+  document.getElementById('apNext').disabled=(id===27);
+  document.querySelectorAll('.anno-word,.anno-mark').forEach(el=>{
+    el.classList.toggle('active',parseInt(el.dataset.a)===id);
+  });
+  document.querySelectorAll('.anno-dots button').forEach(b=>{
+    b.classList.toggle('cur',parseInt(b.dataset.a)===id);
+  });
+  if(scroll&&window.innerWidth<=920){
+    document.querySelector('.anno-panel').scrollIntoView({behavior:'smooth',block:'center'});
+  }
+}
+function navAnno(dir){showAnno(Math.min(27,Math.max(1,curAnno+dir)),false);}
+document.querySelectorAll('.anno-word,.anno-mark').forEach(el=>{
+  el.addEventListener('click',()=>showAnno(parseInt(el.dataset.a),true));
+});
+showAnno(1,false);
+
+/* 原文／語譯切換 */
+function switchMode(mode){
+  const o=document.getElementById('origText'),t=document.getElementById('transText');
+  const bo=document.getElementById('btnOrig'),bt=document.getElementById('btnTrans');
+  if(mode==='orig'){o.classList.remove('hidden');t.classList.add('hidden');bo.classList.add('on');bt.classList.remove('on');}
+  else{t.classList.remove('hidden');o.classList.add('hidden');bt.classList.add('on');bo.classList.remove('on');}
+}
+
+/* ================= 測驗 ================= */
+const quiz=[
+{q:"「後七子」的領袖人物是哪兩位？",o:["李夢陽、何景明","李攀龍、王世貞","謝榛、宗臣","徐中行、吳國倫"],a:1,e:"後七子以李攀龍、王世貞為領袖，天下並稱「王、李」；李夢陽、何景明則是前七子的代表。"},
+{q:"後七子的文學主張為何？",o:["文必秦漢，詩必盛唐","文必唐宋，詩必六朝","文學應隨時代而變，貴在創新","獨推崇宋代理學之文"],a:0,e:"後七子「文主秦、漢，詩規盛唐」，主張文自西京、詩自天寶而下俱無足觀，全面繼承前七子的崇古摹古觀點。"},
+{q:"李攀龍拒絕鄉人殷學以公文命其作文時，說了一句什麼話？",o:["「文章千古事」","「文可檄致邪？」","「詩以道志」","「文以載道」"],a:1,e:"殷學為巡撫，檄令屬文，攀龍怫然曰：「文可檄致邪？」拒不應——可見其性格孤傲。"},
+{q:"後人批評李攀龍的文章：",o:["清水出芙蓉，天然去雕飾","文則聱牙戟口，讀者至不能終篇","行雲流水，初無定質","筆力橫絕，一洗萬古"],a:1,e:"李攀龍摹仿字句、化易為難比李夢陽更甚，刻意使用冷僻字，故後人評其文「聱牙戟口，讀者至不能終篇」。"},
+{q:"李攀龍自號為何？",o:["鳳洲","滄溟","四溟","弇州山人"],a:1,e:"李攀龍自號「滄溟」，著有《滄溟集》；「鳳洲」「弇州山人」是王世貞的號。"},
+{q:"李攀龍去世後，王世貞獨操文柄多少年？",o:["十年","十五年","二十年","三十年"],a:2,e:"《明史・王世貞傳》：「攀龍歿，獨操柄二十年。才最高，地望最顯，聲華意氣籠蓋海內。」"},
+{q:"王世貞《藝苑卮言》所提的文學法度不包括下列何者？",o:["篇法：首尾開闔，繁簡奇正","句法：抑揚頓挫，長短節奏","字法：點掇關鍵，金石綺彩","章法：起承轉合，一波三折"],a:3,e:"王世貞重視法度，提出篇法、句法、字法三者；「起承轉合」之說並非其《藝苑卮言》所論。"},
+{q:"〈題海天落照圖後〉中，「將欲為米顛狡獪」是指湯氏打算做什麼？",o:["以重金向嚴府贖回畫作","以仇英摹本調包，自留唐代真跡","將畫獻給皇帝以求封賞","把畫焚毀以免落入權貴之手"],a:1,e:"米芾臨摹古書畫常可亂真。湯氏延仇英於密室摹一本，準備效法米顛偷樑換柱，將摹本上交而自留真跡，可惜為怨家所發。"},
+{q:"《海天落照圖》真跡最終的下場是？",o:["歸入王世貞弇園收藏","被籍沒入天府後永存宮中","小太監恐被查問，懼而投諸火","由嚴世蕃後人世代珍藏"],a:2,e:"隆慶初中貴攜出，為小璫所竊；朱希孝密以重貲購，中貴詰責甚急，小璫懼而投諸火，妙跡遂永絕。王世貞後來購得的是仇英摹本。"},
+{q:"關於《金瓶梅》作者為王世貞的傳說，其報復動機與手段為何？",o:["奉朝廷之命著書諷刺嚴嵩","因其父王忬被嚴世蕃冤殺，著《金瓶梅》並於書角蘸砒霜毒殺嚴世蕃","與嚴世蕃爭奪李攀龍文壇盟主之位","為贖回被奪的《清明上河圖》而行賄"],a:1,e:"傳說王忬因不肯交出《清明上河圖》被嚴世蕃冤殺；王世貞乃著《金瓶梅》，書角蘸砒霜毒液，嚴世蕃翻書沾唾液而毒發身亡。此為民間傳說，作者身分至今成謎。"}
+];
+let qi=0,score=0,answered=false;
+function renderQ(){
+  answered=false;
+  const q=quiz[qi];
+  document.getElementById('qCount').textContent=`第 ${qi+1} 題 / 共 ${quiz.length} 題`;
+  document.getElementById('qScore').textContent=`得分：${score}`;
+  document.getElementById('qBar').style.width=(qi/quiz.length*100)+'%';
+  document.getElementById('qText').textContent=q.q;
+  const box=document.getElementById('qOpts');box.innerHTML='';
+  const keys=['A','B','C','D'];
+  q.o.forEach((opt,idx)=>{
+    const b=document.createElement('button');
+    b.className='quiz-opt';
+    b.innerHTML=`<span class="opt-key">${keys[idx]}</span><span>${opt}</span>`;
+    b.onclick=()=>pick(idx,b);
+    box.appendChild(b);
+  });
+  document.getElementById('qExp').classList.remove('show');
+  document.getElementById('qNext').classList.remove('show');
+}
+function pick(idx,btn){
+  if(answered)return;answered=true;
+  const q=quiz[qi],opts=document.querySelectorAll('.quiz-opt');
+  opts.forEach(b=>b.classList.add('locked'));
+  if(idx===q.a){score++;btn.classList.add('correct');}
+  else{btn.classList.add('wrong');opts[q.a].classList.add('correct');}
+  opts.forEach((b,i)=>{if(i!==idx&&i!==q.a)b.classList.add('dim');});
+  document.getElementById('qScore').textContent=`得分：${score}`;
+  const exp=document.getElementById('qExp');
+  exp.innerHTML=`<b>解析：</b>${q.e}`;
+  exp.classList.add('show');
+  const nx=document.getElementById('qNext');
+  nx.textContent=(qi===quiz.length-1)?'查看成績 →':'下一題 →';
+  nx.classList.add('show');
+  document.getElementById('qBar').style.width=((qi+1)/quiz.length*100)+'%';
+}
+function nextQ(){
+  if(qi<quiz.length-1){qi++;renderQ();}
+  else showResult();
+}
+function showResult(){
+  document.getElementById('quizBody').style.display='none';
+  const r=document.getElementById('quizResult');
+  r.classList.add('show');
+  document.getElementById('finalScore').textContent=score;
+  let t,m;
+  if(score>=9){t="後七子研究專家！";m="你對李攀龍、王世貞與〈題海天落照圖後〉的掌握已臻化境，足與諸子互相標榜！";}
+  else if(score>=7){t="才高氣銳，可觀也！";m="你對後七子的核心知識掌握良好，再複習注釋細節即可更上層樓。";}
+  else if(score>=5){t="尚堪造就，宜再磨礪";m="基本輪廓已具，建議回到「作品研讀」重讀原文與注釋，並複習兩位領袖的文學觀。";}
+  else{t="建議重新研讀講義";m="「大曆以後書勿讀」，但課文可不能不讀！請從「課程重點」開始重新瀏覽本頁。";}
+  document.getElementById('resultTitle').textContent=t;
+  document.getElementById('resultMsg').textContent=m;
+}
+function restartQuiz(){
+  qi=0;score=0;
+  document.getElementById('quizBody').style.display='block';
+  document.getElementById('quizResult').classList.remove('show');
+  renderQ();
+}
+renderQ();
+
+/* ================= 進場動畫 & 導覽高亮 & 進度條 ================= */
+const io=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+const secs=[...document.querySelectorAll('section')];
+const navLinks=[...document.querySelectorAll('.nav-inner a')];
+const secIO=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id));
+    }
+  });
+},{rootMargin:'-40% 0px -55% 0px'});
+secs.forEach(s=>secIO.observe(s));
+
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const p=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;
+  document.getElementById('progressBar').style.width=p+'%';
+});
+</script>
+</body>
+</html>
